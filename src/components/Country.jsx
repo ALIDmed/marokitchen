@@ -4,19 +4,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MdFoodBank } from "react-icons/md";
 
-function Country({
-  countryFlag,
-  name,
-  population,
-  region,
-  capital,
-  description,
-  serves,
-}) {
+function Country({ countryFlag, name, description, serves }) {
   return (
     <Link
-      to={`name/${name}`}
-      className="bg-slate-800 rounded-lg overflow-hidden"
+      to={`/recipe?param=${name}`}
+      className="rounded-lg overflow-hidden border border-[#333]"
     >
       <div className="country-image">
         <img src={countryFlag} alt="" />

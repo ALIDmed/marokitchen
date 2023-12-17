@@ -21,7 +21,7 @@ function Form({ searchCategories, searchInput, handleListClick }) {
     <form autoCapitalize="off " className="w-full">
       <div className="sm:py-16 py-6 flex justify-between items-center flex-col md:flex-row">
         <div className="flex items-center h-[50px]">
-          <div className="flex w-11 items-center justify-center rounded-tl-lg rounded-bl-lg bg-white h-full">
+          <div className="flex w-11 items-center justify-center rounded-tl-lg rounded-bl-lg bg-[#1a1a1a] h-full">
             <IoSearch className="w-[24px] h-[24px] text-black" />
           </div>
           <input
@@ -29,7 +29,7 @@ function Form({ searchCategories, searchInput, handleListClick }) {
             placeholder="Search for a Recipe"
             value={searchInput}
             onChange={(event) => searchCategories(event.target.value)}
-            className="ss:w-[370px] min-w-[150px] w-[250px] h-full pl-2 outline-0 text-black text-xl pr-4 rounded-tr-lg rounded-br-lg text-ellipsis overflow-hidden"
+            className="ss:w-[370px] min-w-[150px] w-[250px] h-full pl-2 outline-0 text-black text-xl pr-4 rounded-tr-lg rounded-br-lg text-ellipsis overflow-hidden bg-[#1a1a1a]"
           />
         </div>
         <div className="h-[50px] relative w-[414px] cursor-pointer">
