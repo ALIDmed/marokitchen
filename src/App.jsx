@@ -1,26 +1,19 @@
 import React, { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
-import { Navbar, Hero } from "./components";
-import { getRandomElement } from "./utils/index";
+import { Navbar, Hero, Stats, Cta, Testimonials, Footer } from "./components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Recipes from "./pages/Recipes";
 
 const App = () => {
-  const [recipes, setRecipes] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://127.0.0.1:5000/all")
-      .then((response) => {
-        setRecipes(response.data);
-      })
-      .then(() => console.log(recipes));
-  }, []);
-
   return (
-    <div>
-      <Navbar />
-      <Hero {...getRandomElement(recipes)} />
-    </div>
+    <Router>
+      {/* <AppContext.Provider value={{ movieId, setMovieId }}> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes" element={<Recipes />} />
+      </Routes>
+      {/* </AppContext.Provider> */}
+    </Router>
   );
 };
 

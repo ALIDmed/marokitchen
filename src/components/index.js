@@ -1,4 +1,10 @@
 import Navbar from "./Navbar.jsx";
 import Hero from "./Hero.jsx";
+import Stats from "./Stats.jsx";
+import Cta from "./Cta.jsx";
+import Testimonials from "./Testimonials.jsx";
+import Footer from "./Footer.jsx";
+import Form from "./Form.jsx";
+import RecipePage from "./RecipePage.jsx";
 
-export { Navbar, Hero };
+export { Navbar, Hero, Stats, Cta, Testimonials, Footer, Form, RecipePage };
