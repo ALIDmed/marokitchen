@@ -22,6 +22,9 @@ function Country({ countryFlag, name, description, serves }) {
           <MdFoodBank className="w-[30px] h-[30px]" />
           {serves}
         </div>
+        <button onClick={() => addToFavorites({ name })}>
+          Add to Favorites
+        </button>
       </div>
     </Link>
   );

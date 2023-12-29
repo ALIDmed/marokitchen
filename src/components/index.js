@@ -6,5 +6,16 @@ import Testimonials from "./Testimonials.jsx";
 import Footer from "./Footer.jsx";
 import Form from "./Form.jsx";
 import RecipePage from "./RecipePage.jsx";
+import FavoritesPage from "./FavoritesPage.jsx";
 
-export { Navbar, Hero, Stats, Cta, Testimonials, Footer, Form, RecipePage };
+export {
+  Navbar,
+  Hero,
+  Stats,
+  Cta,
+  Testimonials,
+  Footer,
+  Form,
+  RecipePage,
+  FavoritesPage,
+};

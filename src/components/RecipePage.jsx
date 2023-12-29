@@ -8,6 +8,30 @@ function RecipePage() {
   const [searchInput, setSearchInput] = useState("");
   const [category, setCategory] = useState("");
   const [recipes, setRecipes] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  const addToFavorites = (recipe) => {
+    const isAlreadyInFavorites = favorites.some(
+      (fav) => fav.name === recipe.name
+    );
+    console.log("isAlreadyInFavorites: " + isAlreadyInFavorites);
+
+    const storedFavorites =
+      JSON.parse(localStorage.getItem("react-marokitechen-app-favorites")) ||
+      [];
+    const isAlreadyInLocalStorage = storedFavorites.some(
+      (fav) => fav.name === recipe.name
+    );
+    console.log("isAlreadyInLocalStorage: " + isAlreadyInLocalStorage);
+
+    if (!isAlreadyInFavorites) {
+      setFavorites((prevFavorites) => {
+        const newFavorites = [...prevFavorites, recipe];
+        saveToLocalStorage(newFavorites);
+        return newFavorites;
+      });
+    }
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -24,45 +48,38 @@ function RecipePage() {
   const handleListClick = (category) => {
     setCategory(category);
   };
-
   useEffect(() => {
+    console.log(category);
     if (category && searchInput) {
-      let filteredRecipes = recipes.filter((recipe) =>
-        Object.values(recipe.title)
-          .join("")
-          .toLowerCase()
-          .includes(searchInput.toLowerCase())
+      const filteredRecipes = recipes.filter(
+        (recipe) =>
+          recipe.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+          (recipe.ingredients &&
+            recipe.ingredients
+              .toLowerCase()
+              .includes(searchInput.toLowerCase()))
       );
-
       category === "All"
         ? setFiltered(filteredRecipes)
-        : setFiltered(
-            (filteredRecipes = recipes.filter((a) => a.category === category))
-          );
-
+        : setFiltered(filteredRecipes.filter((a) => a.Category === category));
       return;
     }
 
     if (category) {
-      let filteredRecipes;
       category === "All"
-        ? (filteredRecipes = recipes)
-        : (filteredRecipes = recipes.filter((a) => a.category === category));
-      setFiltered(filteredRecipes);
+        ? setFiltered(recipes)
+        : setFiltered(recipes.filter((a) => a.Category === category));
       return;
     }
 
     if (searchInput) {
       const filteredRecipes = recipes.filter(
         (recipe) =>
-          Object.values(recipe.title)
-            .join("")
-            .toLowerCase()
-            .includes(searchInput.toLowerCase()) ||
-          Object.values(recipe.ingredients)
-            .join("")
-            .toLowerCase()
-            .includes(searchInput.toLowerCase())
+          recipe.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+          (recipe.ingredients &&
+            recipe.ingredients
+              .toLowerCase()
+              .includes(searchInput.toLowerCase()))
       );
       setFiltered(filteredRecipes);
     }
@@ -85,6 +102,7 @@ function RecipePage() {
               countryFlag={recipe.image}
               description={recipe.description}
               serves={recipe.serves}
+              addToFavorites={addToFavorites}
             />
           ))}
         </div>
