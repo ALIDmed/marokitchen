@@ -21,7 +21,7 @@ function Form({ searchCategories, searchInput, handleListClick }) {
     <form autoCapitalize="off " className="w-full">
       <div className="sm:py-16 py-6 flex justify-between items-center flex-col md:flex-row">
         <div className="flex items-center h-[50px]">
-          <div className="flex w-11 items-center justify-center rounded-tl-lg rounded-bl-lg bg-[#1a1a1a] h-full">
+          <div className="flex w-11 items-center justify-center rounded-tl-lg rounded-bl-lg bg-white h-full">
             <IoSearch className="w-[24px] h-[24px] text-black" />
           </div>
           <input
@@ -29,10 +29,10 @@ function Form({ searchCategories, searchInput, handleListClick }) {
             placeholder="Search for a Recipe"
             value={searchInput}
             onChange={(event) => searchCategories(event.target.value)}
-            className="ss:w-[370px] min-w-[150px] w-[250px] h-full pl-2 outline-0 text-black text-xl pr-4 rounded-tr-lg rounded-br-lg text-ellipsis overflow-hidden bg-[#1a1a1a]"
+            className="w-[414px] h-full pl-2 outline-0 text-xl pr-4 rounded-tr-lg rounded-br-lg text-ellipsis overflow-hidden text-black placeholder:text-black"
           />
         </div>
-        <div className="h-[50px] relative w-[414px] cursor-pointer">
+        <div className="h-[50px] relative w-[458px] cursor-pointer">
           <div
             onClick={handleToggleOpen}
             className="bg-white text-black md:mt-0 mt-4 h-full outline-0 text-xl pr-4 rounded-lg text-ellipsis overflow-hidden flex items-center px-3"
@@ -41,7 +41,7 @@ function Form({ searchCategories, searchInput, handleListClick }) {
             <i className="fa-solid fa-angle-down"></i>
           </div>
           <ul
-            className={`bg-white text-black flex items-start flex-col rounded-lg absolute top-14 w-full px-4 py-2  ${
+            className={`bg-white text-black flex items-start flex-col rounded-lg absolute md:top-14 top-20 w-full px-4 py-2 z-[100]  ${
               isDropdownOpen ? "flex" : "hidden"
             }`}
           >

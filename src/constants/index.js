@@ -82,7 +82,6 @@ export const feedback = [
     content:
       "Just tried the Chicken Tagine – utterly transported to Morocco! Thanks to this site for the magic recipe!",
     name: "Herman Jensen",
-    title: "Founder & Leader",
     img: people01,
   },
   {
@@ -90,7 +89,6 @@ export const feedback = [
     content:
       "Surprised my family with Lamb Couscous; tasted like a Moroccan feast. This site is my culinary secret weapon!",
     name: "Steve Mark",
-    title: "Chef",
     img: people02,
   },
   {
@@ -98,7 +96,6 @@ export const feedback = [
     content:
       "Moroccan Pastilla for dessert was a hit! Easy instructions made me a culinary hero. Thanks, website!",
     name: "Kenn Gallagher",
-    title: "Founder & Leader",
     img: people03,
   },
 ];
@@ -109,15 +106,15 @@ export const footerLinks = [
     links: [
       {
         name: "Home",
-        link: "https://www.hoobank.com/content/",
+        link: "/",
       },
       {
         name: "Recipes",
-        link: "https://www.hoobank.com/how-it-works/",
+        link: "/recipes",
       },
       {
         name: "Favorites",
-        link: "https://www.hoobank.com/create/",
+        link: "/favorites",
       },
     ],
   },

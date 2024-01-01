@@ -1,37 +1,14 @@
 import Form from "./Form";
 import Country from "./Country";
 import { useState, useEffect } from "react";
-import recipesData from "./recipes.json";
+import { addToFavorites } from "./favoritesUtils";
+import { recipes as recipesData } from "./recipes";
 
 function RecipePage() {
   const [filtered, setFiltered] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [category, setCategory] = useState("");
   const [recipes, setRecipes] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-
-  const addToFavorites = (recipe) => {
-    const isAlreadyInFavorites = favorites.some(
-      (fav) => fav.name === recipe.name
-    );
-    console.log("isAlreadyInFavorites: " + isAlreadyInFavorites);
-
-    const storedFavorites =
-      JSON.parse(localStorage.getItem("react-marokitechen-app-favorites")) ||
-      [];
-    const isAlreadyInLocalStorage = storedFavorites.some(
-      (fav) => fav.name === recipe.name
-    );
-    console.log("isAlreadyInLocalStorage: " + isAlreadyInLocalStorage);
-
-    if (!isAlreadyInFavorites) {
-      setFavorites((prevFavorites) => {
-        const newFavorites = [...prevFavorites, recipe];
-        saveToLocalStorage(newFavorites);
-        return newFavorites;
-      });
-    }
-  };
 
   useEffect(() => {
     const getData = async () => {
@@ -97,12 +74,11 @@ function RecipePage() {
           {filtered.map((recipe, index) => (
             <Country
               key={index}
+              category={recipe.Category}
               name={recipe.title}
-              category={recipe.category}
               countryFlag={recipe.image}
               description={recipe.description}
               serves={recipe.serves}
-              addToFavorites={addToFavorites}
             />
           ))}
         </div>

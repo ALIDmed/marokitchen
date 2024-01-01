@@ -1,32 +1,52 @@
-import React, { useEffect, useState } from "react";
-import Country from "./Country";
+import React, { useState, useEffect } from "react";
+import { getFavoritesFromStorage, removeFromFavorites } from "./favoritesUtils";
+import FavCard from "./FavCard";
 
 const FavoritesPage = () => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(getFavoritesFromStorage());
 
   useEffect(() => {
-    const storedFavorites =
-      JSON.parse(localStorage.getItem("react-marokitechen-app-favorites")) ||
-      [];
-    setFavorites(storedFavorites);
-  }, []);
+    setFavorites(getFavoritesFromStorage());
+  }, [favorites]);
+
+  const handleRemoveFromFavorites = (recipeName) => {
+    removeFromFavorites(recipeName);
+    setFavorites((prevFavorites) =>
+      prevFavorites.filter((fav) => fav.name !== recipeName)
+    );
+  };
 
   return (
-    <div>
-      <h2>Your Favorite Recipes</h2>
-      <ul>
-        {favorites.map((favorite, index) => (
-          <Country
-            key={index}
-            name={favorite.title}
-            category={favorite.category}
-            countryFlag={favorite.image}
-            description={favorite.description}
-            serves={favorite.serves}
-            addToFavorites={addToFavorites}
-          />
-        ))}
-      </ul>
+    <div className="text-white">
+      <section>
+        {favorites.length === 0 ? (
+          <h2 className="text-center h-[500px] mt-3 text-3xl font-poppins">
+            No favorites yet
+          </h2>
+        ) : (
+          <div className="mt-24">
+            <h2 className="text-center text-4xl font-poppins font-semibold mb-10">
+              My favorites
+            </h2>
+
+            <div className="grid gap-4 grid-cols-1 ss:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mb-4">
+              {favorites.map((recipe, index) => (
+                <FavCard
+                  key={index}
+                  name={recipe.name}
+                  countryFlag={recipe.countryFlag}
+                  description={recipe.description}
+                  serves={recipe.serves}
+                  category={recipe.Category}
+                  handleRemoveFromFavorites={() =>
+                    handleRemoveFromFavorites(recipe.name)
+                  }
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
     </div>
   );
 };

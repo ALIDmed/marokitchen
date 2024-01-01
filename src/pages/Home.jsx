@@ -3,17 +3,10 @@ import { Navbar, Hero, Stats, Cta, Testimonials, Footer } from "../components";
 import { getRandomElement } from "../utils/index";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { recipes } from "../components/recipes";
 const Home = () => {
-  const [recipes, setRecipes] = useState([]);
-
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:5000/all")
-      .then((response) => {
-        setRecipes(response.data);
-      })
-      .then(() => console.log(recipes));
+    console.log(recipes);
   }, []);
   return (
     <div className="bg-primary w-full overflow-hidden">

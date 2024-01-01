@@ -1,5 +1,6 @@
 import { Logo } from "../assets";
-import { footerLinks, socialMedia } from "../constants";
+import { footerLinks, socialMedia, navLinks } from "../constants";
+import { Link } from "react-router-dom";
 
 const Footer = () => (
   <section className="flex items-center justify-center flex-col sm:py-16 py-6">
@@ -21,14 +22,14 @@ const Footer = () => (
               {footerLink.title}
             </h4>
             <ul className="list-none mt-4">
-              {footerLink.links.map((link, index) => (
+              {navLinks.map((nav, index) => (
                 <li
-                  key={link.name}
+                  key={index}
                   className={`font-poppins font-normal text-[16px] leading-[24px] text-dimWhite hover:text-secondary cursor-pointer ${
-                    index !== footerLink.links.length - 1 ? "mb-4" : "mb-0"
+                    index !== navLinks.length - 1 ? "mb-4" : "mb-0"
                   }`}
                 >
-                  <a href={link?.hash}>{link.name}</a>
+                  <Link to={nav.id}>{nav.title}</Link>
                 </li>
               ))}
             </ul>
